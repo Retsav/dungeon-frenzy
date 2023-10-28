@@ -11,16 +11,16 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
-        float stoppingDistance = 1f;
+        float stoppingDistance = .1f;
         if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
             Vector3 moveDir = (targetPosition - transform.position).normalized;
             float moveSpeed = 4f;
             transform.position += moveDir * (moveSpeed * Time.deltaTime);   
         }
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetMouseButtonDown(0))
         {
-                Move(new Vector3(4,0,4));
+                Move(MouseWorld.GetPosition());
         }
     }
 
