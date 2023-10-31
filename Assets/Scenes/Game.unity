@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 9.999992, z: -10}
+  m_FollowOffset: {x: 0, y: 12, z: -10}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -305,8 +305,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268325, y: -0.000000022453635, z: 0.000000009300595, w: 0.9238796}
-  m_LocalPosition: {x: 0, y: 9.999992, z: -10}
+  m_LocalRotation: {x: 0.42415538, y: -0.000000015591118, z: 0.0000000073024897, w: 0.90558946}
+  m_LocalPosition: {x: 0, y: 12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -910,8 +910,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239988971}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268325, y: -0.000000022453635, z: 0.000000009300595, w: 0.9238796}
-  m_LocalPosition: {x: 0, y: 9.999992, z: -10}
+  m_LocalRotation: {x: 0.42415538, y: -0.000000015591118, z: 0.0000000073024897, w: 0.90558946}
+  m_LocalPosition: {x: 0, y: 12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1158,6 +1158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 539535c47efacc543b8f81a13e68b615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 1796637555}
 --- !u!4 &1704323918
 Transform:
   m_ObjectHideFlags: 0
@@ -1185,6 +1186,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a333666ada60c21489fcae4d3fae60c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1907234563 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8046773922770788298, guid: aedd86698e69e9e4d8793ac77248f1d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2308402347934747185}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2308402347934747185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1197,6 +1204,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unit
       objectReference: {fileID: 0}
+    - target: {fileID: 5801475995543257945, guid: aedd86698e69e9e4d8793ac77248f1d4,
+        type: 3}
+      propertyPath: unitAnimator
+      value: 
+      objectReference: {fileID: 1907234563}
     - target: {fileID: 7853628564604926909, guid: aedd86698e69e9e4d8793ac77248f1d4,
         type: 3}
       propertyPath: m_LocalPosition.x
