@@ -5,30 +5,47 @@ using UnityEngine;
 
 public class LevelGrid : MonoBehaviour
 {
+    public static LevelGrid Instance { get; private set; }
+
     [SerializeField] private Transform gridDebugObjectPrefab;
 
     private GridSystem gridSystem;
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Debug.LogError("There is more than one LevelGrid! " + transform + " - " + Instance);
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
         gridSystem = new GridSystem(10, 10, 2f);
         gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
     }
 
-    public void SetUnitAtGridPosition(GridPosition gridPosition, Unit unit)
+    public void AddUnitAtGridPosition(GridPosition gridPosition, Unit unit)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
-        gridObject.SetUnit(unit);
+        gridObject.AddUnit(unit);
     }
 
-    public Unit GetUnitAtGridPosition(GridPosition gridPosition)
+    public List<Unit> GetUnitListAtGridPosition(GridPosition gridPosition)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
-        return gridObject.GetUnit();
+        return gridObject.GetUnitList();
     }
 
-    public void ClearUnitAtGridPosition(GridPosition gridPosition)
+    public void RemoveUnitAtGridPosition(GridPosition gridPosition, Unit unit)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
-        gridObject.SetUnit(null);
+        gridObject.RemoveUnit(unit);
     }
+
+    public void UnitMovedGridPosition(Unit unit, GridPosition fromGridPosition, GridPosition toGridPosition)
+    {
+        RemoveUnitAtGridPosition(fromGridPosition, unit);
+        AddUnitAtGridPosition(toGridPosition, unit);
+    }
+
+    public GridPosition GetGridPosition(Vector3 worldPosition) => gridSystem.GetGridPosition(worldPosition);
 }
