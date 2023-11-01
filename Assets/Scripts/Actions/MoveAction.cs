@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveAction : MonoBehaviour
+public class MoveAction : BaseAction
 {
     [Header("References")]
     [SerializeField] private Animator unitAnimator;
@@ -12,37 +12,42 @@ public class MoveAction : MonoBehaviour
     [SerializeField] private int maxMoveDistance = 4;
     
     private Vector3 targetPosition;
-    private Unit unit;
 
-    private void Awake()
+    protected override void Awake()
     {
-        unit = GetComponent<Unit>();
+        base.Awake();
         targetPosition = transform.position;
     }
 
     void Update()
     {
-                
+        if (!isActive)
+        {
+            return;
+        }
+        Vector3 moveDir = (targetPosition - transform.position).normalized;       
         float stoppingDistance = .1f;
         if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
-            Vector3 moveDir = (targetPosition - transform.position).normalized;
             float moveSpeed = 4f;
             transform.position += moveDir * (moveSpeed * Time.deltaTime);
-            float rotateSpeed = 10f;
-            transform.forward = Vector3.Lerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
             unitAnimator.SetBool("IsWalking", true);
         }
         else
         {
             unitAnimator.SetBool("IsWalking", false);
+            isActive = false;
+            onActionComplete();
         }
-
+        float rotateSpeed = 10f;
+        transform.forward = Vector3.Lerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
     }
     
-    public void Move(GridPosition gridPosition)
+    public void Move(GridPosition gridPosition, Action onActionComplete)
     {
+        this.onActionComplete = onActionComplete;
         this.targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
+        isActive = true;
     }
 
     public bool IsValidActionGridPosition(GridPosition gridPosition)
