@@ -74,6 +74,7 @@ public class UnitActionSystem : MonoBehaviour
                     {
                         return false;
                     }
+                    if (unit.IsEnemy()) return false;
                     SetSelectedUnit(unit);
                     return true;
                 }   

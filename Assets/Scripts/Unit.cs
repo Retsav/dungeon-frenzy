@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] private bool isEnemy;
+    
+    
     private const int ACTION_POINTS_MAX = 2;
     public static event EventHandler OnAnyActionPointsChanged;
     
@@ -102,5 +106,10 @@ public class Unit : MonoBehaviour
     public int GetActionPoints()
     {
         return actionPoints;
+    }
+
+    public bool IsEnemy()
+    {
+        return isEnemy;
     }
 }
