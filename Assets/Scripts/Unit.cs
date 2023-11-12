@@ -55,6 +55,11 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public Vector3 GetWorldPosition()
+    {
+        return transform.position;
+    }
+
     public MoveAction GetMoveAction()
     {
         return moveAction;
@@ -115,5 +120,10 @@ public class Unit : MonoBehaviour
     public bool IsEnemy()
     {
         return isEnemy;
+    }
+
+    public void Damage()
+    {
+        Debug.Log(transform + " damaged!");
     }
 }
